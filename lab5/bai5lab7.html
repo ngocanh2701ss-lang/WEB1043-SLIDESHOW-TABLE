@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bai5 lab 7</title>
+    <style>
+        body {
+            font-family: Arial;
+            margin: 40px;
+        }
+        form {
+            width: 400px;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        #phi_van_chuyen {
+            margin-top: 10px;
+            display: none;
+        }
+        button {
+            margin-top: 15px;
+            padding: 8px 15px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Đặt Hàng</h2>
+    <form onsubmit="return kiem_tra()">
+        <label>San Pham:</label>
+        <input type="text" id="san_pham"><br><br>
+
+        <label>Don Gia:</label>
+        <input type="text" id="don_gia"><br><br>
+
+        <label>Loai San Pham:</label>
+        <select id="loai_san_pham">
+            <option value="">---Chon loai---</option>
+            <option value="1">Dien thoai</option>
+            <option value="2">Laptop</option>
+            <option value="3">Phu kien</option>
+        </select><br><br>
+
+        <label>Noi nhan hang:</label>
+        <input type="radio" name="dia_chi" onclick="hien_thi(false)">Noi thanh
+        <input type="radio" name="dia_chi" onclick="hien_thi(true)">Ngoai thanh <br><br>
+
+        <div id="phi_van_chuyen">Phi van chuyen 10.000vnd</div>
+
+        <button type="submit">Dat Hang</button>
+    </form>
+
+    <script>
+        function hien_thi(isNgoaiThanh){
+            var phi_van_chuyen = document.getElementById('phi_van_chuyen');
+            phi_van_chuyen.style.display = isNgoaiThanh ? 'block' : 'none';
+        }
+
+        function kiem_tra(){
+            var sp = document.getElementById('san_pham');
+            var gia = document.getElementById('don_gia');
+            var loai = document.getElementById('loai_san_pham');
+            var radios = document.getElementsByName('dia_chi');
+
+            if(sp.value.length == 0){
+                alert('San pham khong duoc de trong');
+                return false;
+            }
+
+            if(gia.value.length == 0){
+                alert('don gia khong duco de trong');
+                return false;
+            }else if(parseFloat(gia.value) <= 0){
+                alert('vui long nhap so duong');
+                return false;
+            }
+
+            if(loai.value.length == 0){
+                alert('Vui long chon loai san pham');
+                return false;
+            }
+
+            if(!radios[0].checked && !radios[1].checked){
+                alert('Vui long chon noi nhan hang');
+                return false;
+            }
+
+            alert('Dat hang thanh cong!');
+            return true;
+        }
+    </script>
+</body>
+</html>

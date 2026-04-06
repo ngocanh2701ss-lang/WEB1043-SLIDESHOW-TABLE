@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bai 1</title>
+</head>
+<body>
+    <label id="pro" data-price="2000">Iphone 17 Pro Max</label>
+    <input type="number" id="qty" min="0">
+    <button onclick="hienthi()">OK</button>
+
+    <hr>
+
+    <h3>Name: <span id="name">?</span></h3>
+    <h3>Amount: <span id="amount">?</span></h3>
+
+    <script>
+        function hienthi(){
+            var name = document.getElementById('pro').innerText;
+            var qty = document.getElementById('qty').value;
+            var price = document.getElementById('pro').getAttribute('data-price');
+            var total = qty * price;
+
+            document.getElementById('name').innerText = name;
+            document.getElementById('amount').innerText = total + '$';
+        }
+    </script>
+</body>
+</html>
