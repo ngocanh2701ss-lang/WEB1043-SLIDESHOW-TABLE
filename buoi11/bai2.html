@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab5 bài 2</title>
+</head>
+<body>
+    <h2>DANH MỤC HÀNG HÓA</h2>
+    <table border="1">
+        <tr>
+            <td>Iphone 17</td>
+            <td>$2000</td>
+            <td><button onclick="them('Iphone 17', 2000)">thêm</button></td>
+        </tr>
+        <tr>
+            <td>Sam sung</td>
+            <td>$17000</td>
+            <td><button onclick="them('Samsung', 17000)">thêm</button></td>
+        </tr>
+        <tr>
+            <td>Nokia</td>
+            <td>$18000</td>
+            <td><button onclick="them('Nokia', 18000)">thêm</button></td>
+        </tr>Nokia
+    </table>
+
+    <h2>GIỎ HÀNG CỦA BẠN</h2>
+
+    <table border="1" id="giohang"></table>
+    <h2>TÍNH TIỀN: <span id="tinhtien">?</span></h2>
+
+    <script>
+        let tinhtien=0;
+        function them(ten, gia){
+            let table=document.getElementById('giohang')
+            let row=table.insertRow()
+            row.insertCell(0).innerText=ten
+            row.insertCell(1).innerText=gia
+            let cellbtn=row.insertCell(2)
+
+
+            let btn=document.createElement('button')
+            btn.innerText="xóa"
+
+            
+
+             btn.onclick=function(){
+                table.deleteRow(row.rowIndex)
+                tinhtien -= gia
+                document.getElementById('tinhtien').innerText=tinhtien
+             }
+
+             cellbtn.appendChild(btn);
+
+
+             //cập nhật giá tiền
+             tinhtien += gia
+
+             document.getElementById('tinhtien').innerText=tinhtien
+
+        }
+
+    </script>
+
+
+
+</body>
+</html>

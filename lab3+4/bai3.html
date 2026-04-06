@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- BÀI 3: ĐOÁN SỐ -->
+
+    <script>
+        while(true){
+            let user = Number(prompt("Nhập số từ 0-99"));
+            let random = Math.floor(Math.random() * 100);
+
+            if(user === random){
+                alert("Trúng ! Số là: " + random);
+                break;
+            }else{
+                let tiep = confirm("Sai rồi! chơi tiếp không?");
+                if(!tiep){
+                    break;
+                }
+            }
+        }
+    </script>
+</body>
+</html>

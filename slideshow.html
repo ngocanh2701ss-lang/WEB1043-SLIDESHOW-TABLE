@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body onload="start()">
+   <h1>SLIDE SHOW</h1> 
+   <img id="slide" src="IMG/so1.png">
+
+   <hr>
+   <button onclick="first()">First</button>
+   <button onclick="last()">Last</button>
+   <button onclick="prev()">Prev</button>
+   <button onclick="next()">Next</button>
+   <button onclick="start()">Start</button>
+   <button onclick="stop()">Stop</button>
+
+   <script>
+    let index = 0;
+    let timer = null;
+   </script>
+</body>
+</html>

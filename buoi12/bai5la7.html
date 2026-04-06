@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .phi_vc{
+            display: none;
+        }
+    </style>
+</head>
+<body >
+   
+    
+    <table>
+         <form onsubmit="return kiem_tra()">
+        <!-- <form onsubmit="return kiem_tra()"> -->
+        <tr>
+            <td>Sản phẩm</td>
+            <td><input type="text" id="san_pham"></td>
+        </tr>
+
+        <tr>
+            <td>Loại</td>
+            <td>
+                <select id="chon">
+                    <option value="">Loại 1</option>
+                    <option value="">Loại 2</option>
+                    <option value="">Loại 3</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+                <td>Đơn giá</td>
+                <td><input type="text" id="don_gia"></td>
+        </tr>
+        <tr>
+            <td>Nơi nhận hàng</td>
+            <td>
+                <input type="radio"name="dia_chi" onclick="hienThi(false)">Nội thành
+                <input type="radio"name="dia_chi" onclick="hienThi(true)">Ngoại thành
+            </td>
+        </tr>
+        <tr>
+            <td id="phi_vc" class="phi_vc">Phí vận chuyển: 
+            <input type="text" id="phi">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2"><hr></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <button type="submit">Đặt mua</button>
+            </td>
+        </tr>
+        </form> 
+    </table>
+   
+
+<script>
+    //lấy phí vận chuyển 
+    function hienThi(visiable){
+        let phi_vc= document.getElementById('phi_vc');
+        let phi=document.getElementById('phi');
+
+
+        if(visiable){
+            phi_vc.style.display='block'
+            phi.value='100000';
+        }else{
+            phi_vc.style.display ='none';
+            phi.value = '0';
+        }
+        //kiểm tra form
+    }
+        function kiem_tra(){
+           let sp=document.getElementById('san_pham')
+           let loai=document.getElementById('chon')
+           let don_gia=document.getElementById('don_gia')
+           let radios=document.getElementsByName('dia_chi')
+
+
+           if(sp.value.length==0){
+            alert('nhập tên hàng')
+            sp.focus()
+            return false
+           }
+           if(!radios[0].checked && radios[1].checked){
+            alert('chọn nơi đặt hàng thành công')
+            return false
+           }
+           alert('đặt hàng thành công')
+        //    if(gia.value.length==0){
+        //     alert('nhập giá sản phẩm')
+        //     gia.focus()
+        //     return false
+        //    }
+        //    if(isNaN(gia.value)){
+        //     alert('nhập giá sản phẩm')
+        //     gia.focus()
+        //     return false
+        //    }
+
+        //    if(loai.value.length==0){
+
+        //    }
+        }
+    
+</script>
+</body>
+</html>

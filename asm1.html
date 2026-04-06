@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #slide{
+            width: 500px;
+            height: 300px;
+            object-fit: cover;
+            display: cover;
+            display: block;
+            margin: 0 auto 20px auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        button:hover{
+            transform: translateY(-3px);
+            box-shadow: 0 60px 12px rgba(0, 0, 0, 0.2);
+            opacity: 0.9;
+            background-color: hotpink;
+        }
+        body{
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f9;
+            padding-top: 50px;
+        }
+        h2{
+            color: hotpink;
+        }
+        h2:hover{
+            color: red;
+        }
+    </style>
+</head>
+<body onload="start()">
+    <!--bài ôn tập để thi nhé nghiên cứu kĩ đi-->
+    <h2>Slide show</h2>
+
+    <img id="slide" src="IMG/so1.png">
+    <hr>
+    <button onclick="first()">First</button>
+    <button onclick="last()">Last</button>
+    <button onclick="prev()">Prev</button>
+    <button onclick="next()">Next</button>
+    <button onclick="start()">Start</button>
+    <button onclick="stop()">Stop</button>  
+
+
+    <script>
+        let img = [
+            'IMG/so1.png',
+            'IMG/so2.png',
+            'IMG/so3.png',
+            'IMG/so4.png',
+            'IMG/so5.png',
+        ];
+
+        let index = 0;
+        let timer = null;
+
+        function show(){
+            document.getElementById('slide').src = img[index];
+
+        }
+        function last(){
+        index = img.length - 1;
+            show();
+        }
+        function first(){
+            index = 0;
+            show();
+        }
+
+        function next(){
+            index++;
+            if(index >= img.length) index =0;
+            show();
+        }
+        function prev(){
+            index--;
+            if(index < 0) index = img.length -1;
+            show();       
+        }
+        function start(){
+            if(timer == null){
+                timer = setInterval(next, 1500);
+            }
+        }
+        function stop(){
+            clearInterval(timer);
+            timer = null;
+        }
+    </script>
+</body>
+</html>

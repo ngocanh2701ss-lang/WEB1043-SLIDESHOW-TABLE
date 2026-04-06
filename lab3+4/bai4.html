@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f4f4f9;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        /**Khung máy tính*/
+        #box{
+            background-color: #fff;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgb(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h1{
+            margin-top: 0;
+            color: #333;
+            font-size: 1.5rem;
+
+        }
+        #show{
+            width: 220px;
+            height: 50px;
+            margin-bottom: 15px;
+            text-align: right;
+            font-size: 24px;
+            padding: 0 10px;
+            border: 2px solid #eee;
+            border-radius: 8px;
+            background-color: #fafafa;
+            color: #333;
+        }
+            /**các nút bấm*/
+            input[type="button"]{
+                width: 50px;
+                height: 50px;
+                margin: 4px;
+                cursor: pointer;
+                border: none;
+                border-radius: 8px;
+                font-size: 18px;
+                font-weight: bold;
+                transition: all 0.2s;
+            }
+
+            /***/
+
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h1>PHÉP TÍNH</h1>
+        <form name="calc">
+            <input type="text" id="show" name="show" readonly value="0"> <br>
+
+            <input type="button"value="7" onclick="toantu(7)">
+            <input type="button"value="8" onclick="toantu(8)">
+            <input type="button"value="9" onclick="toantu(9)">
+            <input type="button"value="+" onclick="toanhang('+')"> <br>
+
+            <input type="button"value="4" onclick="toantu(4)">
+            <input type="button"value="5" onclick="toantu(5)">
+            <input type="button"value="6" onclick="toantu(6)">
+            <input type="button"value="-" onclick="toanhang('-')"> <br>
+
+            <input type="button"value="1" onclick="toantu(1)">
+            <input type="button"value="2" onclick="toantu(2)">
+            <input type="button"value="3" onclick="toantu(3)">
+            <input type="button"value="*" onclick="toanhang('*')"> <br>
+
+            <input type="button"value="0" onclick="toantu(0)">
+            <input type="button"value="C" onclick="xoadl()">
+            <input type="button"value="=" onclick="tinh()">
+            <input type="button"value=":" onclick="toanhang('/')"> <br>
+        </form>
+    </div>
+
+    <script>
+
+            let currentInput = "";
+            let previousInput = "";
+            let op = null;
+
+
+            const display = document.getElementById("show");
+
+
+            function toantu(so){
+                if(currentInput === "0") currentInput = "";
+                currentInput += so;
+                display.value = currentInput;
+            }
+
+            function toanhang(x){
+                if(currentInput === "") return;
+                op = x;
+                previousInput = currentInput;
+                currentInput = "";
+            }
+
+            //hàm thực thi toán hạng
+            function tinh(){
+                if(previousInput === "" || currentInput === "") return;
+
+                let a = parseFloat(previousInput);
+                let b = parseFloat(currentInput);
+                let ketQua = 0;
+
+                switch(op){
+                    case '+': ketQua = a+b; break;
+                    case '-': ketQua = a-b; break;
+                    case '*': ketQua = a*b; break;
+                    case '/': ketQua = a/b; break;
+                }
+           
+                display.value = ketQua;
+                currentInput = ketQua.toString();
+                previousInput = "";
+                op=null;
+        
+ }
+                //hàm xóa dữ liệu nút C
+
+                function xoadl(){
+                    currentInput = "";
+                    previousInput = "";
+                    op = "";
+                    display.value ="0"; 
+        }
+            
+
+    </script>
+</body>
+</html>

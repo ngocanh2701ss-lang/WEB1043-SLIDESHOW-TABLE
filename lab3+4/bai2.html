@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--Bài 2 nhập số nguyên dương-->
+    <script>
+        let n = prompt("Nhập số phần tử: ");
+        n = Number(n);
+
+        let arr = [];
+        for(let i = 0; i < n; i++){
+            arr[i] = Number(prompt("Nhập phần tử " + i));
+        }
+
+        //TÁCH 2 SỐ CHẴN LẺ
+        let chan = [];
+        let le = [];
+
+        for(let i = 0; i < arr.lenght; i++){
+            if(arr[i] % 2 === 0){
+                chan.push(arr[i]);
+            }else{
+                le.push(arr[i]);
+            }
+        }
+        console.log("Mảng chẵn: ", chan);
+        console.log("Mảng lẻ: ", le);
+
+        //SỐ CHÍNH PHƯƠNG
+        function laSoChinhPhuong(n){
+            let sqrt = Math.sqrt(n);
+            return Number.isInteger(sqrt);
+        }
+
+        //TÍNH TỔNG
+        let sum = 0;
+
+        for(let i = 0; i < arr.lenght; i++){
+            if(laSoChinhPhuong(arr[i])){
+                sum += arr[i];
+            }
+        }
+        console.log("Tổng số chính phương: ", sum);
+    </script>
+</body>
+</html>
