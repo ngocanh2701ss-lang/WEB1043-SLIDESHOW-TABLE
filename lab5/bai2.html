@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bai2</title>
+</head>
+<body>
+    <h3>Danh muc hang hoa</h3>
+    <table border="1">
+        <tr>
+            <td>Iphone 17 Pro Max</td>
+            <td>2000</td>
+            <td><button onclick="them('Iphone 17 Pro Max', 2000)">Them</button></td>
+        </tr>
+        <tr>
+            <td>Samsung Galaxy S30 Ultra</td>
+            <td>1500</td>
+            <td><button onclick="them('Samsung Galaxy S30 Ultra', 1500)">Them</button></td>
+        </tr>
+        <tr>
+            <td>Xiaomi Mi 13 Pro</td>
+            <td>1000</td>
+            <td><button onclick="them('Xiaomi Mi 13 Pro', 1000)">Them</button></td>
+        </tr>
+        <tr>
+            <td>Oppo Find X5 Pro</td>
+            <td>1200</td>
+            <td><button onclick="them('Oppo Find X5 Pro', 1200)">Them</button></td>
+        </tr>
+    </table>
+
+    <hr>
+
+    <h3>Gio hang cua ban</h3>
+    <table border="1" id="cart">
+        <thead>
+            <tr>
+                <th>ten</th>
+                <th>gia</th>
+                <th>action</th>
+            </tr>
+        </thead>
+        <tbody id="cart-body"></tbody>
+    </table>
+    <h3>
+            Tong so tien: $
+            <span id="tong">0</span> 
+    </h3>
+
+    <script>
+        function them(name, price){
+            var cartBody = document.getElementById('cart-body');
+
+            var row = document.createElement('tr');
+            
+            row.innerHTML = `
+                <td>${name}</td>
+                <td>${price}</td>
+                <td><button onclick="xoa(this, ${price})">Xoa</button></td>
+            `;
+
+            cartBody.appendChild(row);
+
+            capnhatTong(price);
+            }
+
+            function xoa(btn, price){
+                var row = btn.parentElement.parentElement;
+                row.remove();
+
+                capnhatTong(-price);
+            }
+
+            function capnhatTong(value){
+                var tong = document.getElementById('tong');
+                var current = Number(tong.innerText);
+                tong.innerText = current + value;
+            }
+    </script>
+</body>
+</html>

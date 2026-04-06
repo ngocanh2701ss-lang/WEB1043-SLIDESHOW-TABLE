@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>bai 3</title>
+</head>
+<body>
+
+<table border="1" width="600">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Hàng hóa</th>
+            <th>Đơn giá</th>
+            <th>Số lượng</th>
+            <th>Thành tiền</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><input type="checkbox" onchange="tinhTien(this)"></td>
+            <td>Nokia</td>
+            <td class="price">100</td>
+            <td><input type="number" value="1" min="0" onchange="tinhTien(this)"></td>
+            <td class="total">0</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" onchange="tinhTien(this)"></td>
+            <td>Motorola</td>
+            <td class="price">180</td>
+            <td><input type="number" value="0" min="0" onchange="tinhTien(this)"></td>
+            <td class="total">0</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" onchange="tinhTien(this)"></td>
+            <td>bPhone</td>
+            <td class="price">90</td>
+            <td><input type="number" value="0" min="0" onchange="tinhTien(this)"></td>
+            <td class="total">0</td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <th colspan="4">Tổng tiền</th>
+            <th id="tong">0</th>
+        </tr>
+    </tfoot>
+</table>
+
+<script>
+    function tinhTien(element) {
+        var row = element.parentElement.parentElement;
+
+        var checkbox = row.querySelector("input[type='checkbox']");
+        var qtyInput = row.querySelector("input[type='number']");
+        var price = Number(row.querySelector(".price").innerText);
+        var totalCell = row.querySelector(".total");
+
+        var qty = Number(qtyInput.value);
+
+        if (checkbox.checked) {
+            var total = price * qty;
+            totalCell.innerText = total;
+        } else {
+            totalCell.innerText = 0;
+        }
+
+        tinhTong();
+    }
+
+    function tinhTong() {
+        var totals = document.querySelectorAll(".total");
+        var sum = 0;
+
+        totals.forEach(cell => {
+            sum += Number(cell.innerText);
+        });
+
+        document.getElementById("tong").innerText = sum;
+    }
+</script>
+
+</body>
+</html>
