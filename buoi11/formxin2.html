@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng kí khoá học</title>
+</head>
+<body>  
+    <h1>Đăng kí khoá học</h1>
+    <form onsubmit="return kiem_tra()" fa-border>
+        <label>Ho ten:</label>
+        <input type="text" id="ho_ten">
+        <span id="err_name" style="color: red;"></span><br><br>
+        
+        <label>Email:</label>
+        <input type="email" id="email">
+        <span id="err_email" style="color: red;"></span><br><br>
+
+        <label>So dien thoai: </label>
+        <input type="text" id="so_dien_thoai">
+        <span id="err_sdt" style="color: red;"></span><br><br>
+
+        <label>Khoa học:</label>
+        <select  id="khoa_hoc">
+            <option value="">---chon loai---</option>
+            <option value="1">HTML</option>
+            <option value="2">JS</option>
+            <option value="3">CSS</option>
+        </select>
+        <span id="err_khoa" style="color: red;"></span><br><br>
+
+        <label>Hoc phi:</label>
+        <input type="number" id="hoc_phi" value="500" readonly><br><br>
+
+        <label>Hinh thuc hoc</label>
+        <input type="radio" name="hinh_thuc">Tai truong 
+        <input type="radio" name="hinh_thuc">Hoc online 
+        <span id="err_ht" style="color: red;"></span><br><br>
+
+
+        <div id="thong_bao" style="color: green;"></div>
+
+        <button type="submit">Đăng kí</button>
+
+    </form>
+
+    <script>
+        function kiem_tra(){
+            let hoTen = document.getElementById("ho_ten").value.trim();
+            let email = document.getElementById("email").value.trim();
+            let sdt = document.getElementById("so_dien_thoai").value.trim();
+            let khoaHoc = document.getElementById("khoa_hoc").value;
+            let hinhThuc = document.getElementsByName("hinh_thuc");
+
+            document.getElementById("err_name").innerText = "";
+            document.getElementById("err_email").innerText = "";
+            document.getElementById("err_sdt").innerText = "";
+            document.getElementById("err_khoa").innerText = "";
+            document.getElementById("err_ht").innerText = "";
+            document.getElementById("thong_bao").innerText = "";
+
+            let isValid = true;
+
+            if(hoTen === ""){
+                document.getElementById("err_name").innerText = "Khong duoc de trong!";
+                isValid = false;
+            }
+
+            if(email === ""){
+                document.getElementById("err_email").innerText = "Khong duoc de trong!";
+                isValid = false;
+            }
+
+            if(sdt === ""){
+                document.getElementById("err_sdt").innerText = "Khong duoc de trong!";
+                isValid = false;
+            }
+
+            if(khoaHoc === ""){
+                document.getElementById("err_khoa").innerText = "Vui long chon khoa hoc!";
+                isValid = false;
+            }
+
+            let regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if(email !== "" && !regexEmail.test(email)){
+                document.getElementById("err_email").innerText = "Vui long nhap dung dinh dang email!";
+                isValid = false;
+                
+            }
+
+            let regexSDT = /^0\d{9}$/;
+            if(sdt !== "" && !regexSDT.test(sdt)){
+                document.getElementById("err_sdt").innerText = "Vui long nhap dung sdt (10 so, bat dau bang so 0)";
+                isValid = false;
+            }
+
+            let check = false;
+                    for(let i = 0; i < hinhThuc.length; i++){
+                        if(hinhThuc[i].checked){
+                            check = true;
+                        }
+                    }
+
+                    if(!check){
+                        document.getElementById("err_ht").innerText = "Vui lòng chọn hình thức học!";
+                        return false;
+                    }
+
+                    if(isValid){
+                        document.getElementById("thong_bao").innerText = "Đăng ký thành công!";
+                    }
+                    return false;
+               } 
+
+            document.getElementById("khoa_hoc").addEventListener("change", function(){
+                let hocPhi = document.getElementById("hoc_phi");
+
+                switch(this.value){
+                    case "1": 
+                        hocPhi.value = "500";
+                        break;
+                    case "2":
+                        hocPhi.value = "1000";
+                        break;
+                    case "3": 
+                        hocPhi.value = "800";
+                        break;
+                    default:
+                        hocPhi.value = "";
+                }
+            });
+            
+    </script>
+</body>
+</html>

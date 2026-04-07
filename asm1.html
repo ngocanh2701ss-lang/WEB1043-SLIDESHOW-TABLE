@@ -38,64 +38,9 @@
         }
     </style>
 </head>
-<body onload="start()">
-    <!--bài ôn tập để thi nhé nghiên cứu kĩ đi-->
-    <h2>Slide show</h2>
 
-    <img id="slide" src="IMG/so1.png">
-    <hr>
-    <button onclick="first()">First</button>
-    <button onclick="last()">Last</button>
-    <button onclick="prev()">Prev</button>
-    <button onclick="next()">Next</button>
-    <button onclick="start()">Start</button>
-    <button onclick="stop()">Stop</button>  
-
-
-    <script>
-        let img = [
-            'IMG/so1.png',
-            'IMG/so2.png',
-            'IMG/so3.png',
-            'IMG/so4.png',
-            'IMG/so5.png',
-        ];
-
-        let index = 0;
-        let timer = null;
-
-        function show(){
-            document.getElementById('slide').src = img[index];
-
-        }
-        function last(){
-        index = img.length - 1;
-            show();
-        }
-        function first(){
-            index = 0;
-            show();
-        }
-
-        function next(){
-            index++;
-            if(index >= img.length) index =0;
-            show();
-        }
-        function prev(){
-            index--;
-            if(index < 0) index = img.length -1;
-            show();       
-        }
-        function start(){
-            if(timer == null){
-                timer = setInterval(next, 1500);
-            }
-        }
-        function stop(){
-            clearInterval(timer);
-            timer = null;
-        }
-    </script>
+<body>
+    
 </body>
+
 </html>

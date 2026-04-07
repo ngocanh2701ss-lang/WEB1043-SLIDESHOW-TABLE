@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        span{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>ĐĂNG KÝ KHÓA HỌC</h1>
+    <form onsubmit="return kiem_tra()">
+        Họ tên: 
+        <input type="text" id="name"> <br>
+<br>
+        <span id="errName"></span> <br> <br>
+        Email:
+        <input type="text" id="email"> <br> <br>
+        <span id="errEmail"></span> <br> <br>
+        số điện thoại: 
+        <input type="text" id="phone"> <br>
+        <span id="errPhone"></span> <br> <br>
+        Khóa học:
+        <select id="khoahoc" onchange="doihocphi()">
+            <option value="html">HTML</option>
+            <option value="css">CSS</option>
+            <option value="js">JS</option>
+        </select>
+        <br><br>
+        Học phí: 
+        <input type="text" id="hocPhi" value="500" readonly> <br> <br>
+        Hình thức học:     
+        <input type="radio" name="hinhthuc"> Trường
+        <input type="radio" name="hinhthuc"> online
+        <br> <br>
+        <button type="submit">Đăng ký</button>
+
+
+    </form>
+    <script>
+   
+    function kiem_tra(){
+    let name = document.getElementById('name');
+    let email = document.getElementById('email');
+    let phone = document.getElementById('phone');
+    let noihoc = document.getElementsByName('hinhthuc');
+
+    let errName=document.getElementById('errName');
+    errName.innerText=''
+    let errEmail=document.getElementById('errEmail')
+    errEmail.innerText=''
+    let errPhone=document.getElementById('errPhone')
+    errPhone.innerText=''
+
+
+    // check rỗng
+    if(name.value==""){
+        // alert('Mời nhập họ tên');
+        errName.innerText='Mời nhập họ tên'
+        name.focus();
+        return false;
+    }
+
+    if(email.value==""){
+        // alert('Mời nhập email');
+        errEmail.innerText='Mời nhập email'
+        email.focus();
+        return false;
+    }
+
+    if(phone.value==""){
+        // alert('Mời nhập SĐT');
+            errPhone.innerText='Mời nhập SĐT'
+
+        
+        phone.focus();
+        return false;
+    }
+
+    // check SĐT
+    let regexPhone = /^0\d{9}$/;
+    if(!regexPhone.test(phone.value)){
+        alert('SĐT không hợp lệ');
+        phone.focus();
+        return false;
+    }
+
+    // check email
+    let regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if(!regexEmail.test(email.value)){
+        alert('Email không đúng định dạng');
+        email.focus();
+        return false;
+    }
+
+    // check radio
+    if(!noihoc[0].checked && !noihoc[1].checked){
+        alert('Chọn hình thức học');
+        return false;
+    }
+
+    alert('Đăng ký thành công');
+    return true;
+}
+
+    </script>
+  
+</body>
+</html>
